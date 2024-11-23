@@ -30,4 +30,10 @@
 
     <rule ref="rulesets/unusedcode.xml"/>
 
+    <exclude-pattern>vendor</exclude-pattern>
+    <exclude-pattern>database</exclude-pattern>
+    <exclude-pattern>node_modules</exclude-pattern>
+    <exclude-pattern>.phpstorm.meta.php</exclude-pattern>
+    <exclude-pattern>_ide_helper.php</exclude-pattern>
+
 </ruleset>

@@ -19,3 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Added tooling, PHPStan
 - Added tooling, PHP Psalm
 - Added tooling, PHPUnit
+
+## [0.1.0] - 2024-11-23
+
+### Added
+- Installed Laravel 10
+- Git-hooks working on pre-commit and pre-push

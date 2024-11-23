@@ -8,12 +8,17 @@
     <rule ref="PSR12"/>
 
     <file>app</file>
+    <file>src</file>
     <file>tests</file>
 
+    <exclude-pattern>bootstrap/*</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>storage/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
     <exclude-pattern>*/migrations/*</exclude-pattern>
     <exclude-pattern>_ide_helper*</exclude-pattern>
     <exclude-pattern>.phpstorm.meta.php</exclude-pattern>
+    <exclude-pattern>public/build/*</exclude-pattern>
 
     <!-- ignore warnings and display ERRORS only -->
     <arg value="np"/>
