@@ -1,0 +1,16 @@
+parameters:
+	level: 8
+	phpVersion: 80100
+	tipsOfTheDay: true
+	errorFormat: table
+	paths:
+		- app
+	excludePaths:
+	    - tests
+	editorUrl: 'phpstorm://open?file=%%relFile%%&line=%%line%%'
+#	scanFiles:
+#	    - _ide_helper.php
+#	    - .phpstorm.meta.php
+	scanDirectories:
+	    - vendor
+
