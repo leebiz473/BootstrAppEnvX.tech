@@ -23,9 +23,16 @@
     </rule>
 
     <rule ref="rulesets/naming.xml">
+        <exclude name="ShortVariable"/>
         <exclude name="BooleanGetMethodName"/>
         <exclude name="CyclomaticComplexity"/>
         <exclude name="LongVariable"/>
+    </rule>
+
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="id,q,i,j,v,e,f,fp,x" />
+        </properties>
     </rule>
 
     <rule ref="rulesets/unusedcode.xml"/>
