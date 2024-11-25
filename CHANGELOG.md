@@ -25,3 +25,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - Installed Laravel 10
 - Git-hooks working on pre-commit and pre-push
+- Install Laravel Breeze with Inertia
