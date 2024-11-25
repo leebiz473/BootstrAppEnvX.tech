@@ -1,9 +1,11 @@
 import { useEffect, FormEventHandler } from 'react';
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
+// import GuestLayout from '@/Layouts/GuestLayout';
+import { GuestLayout } from '../../Layouts';
+// import InputError from '@/Components/InputError';
+// import InputLabel from '@/Components/InputLabel';
+// import PrimaryButton from '@/Components/PrimaryButton';
+// import TextInput from '@/Components/TextInput';
+import { Button, buttonStyles, Checkbox, Form, TextField } from 'ui';
 import { Head, Link, useForm } from '@inertiajs/react';
 
 export default function Register() {
@@ -12,6 +14,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        terms: false
     });
 
     useEffect(() => {
@@ -20,98 +23,95 @@ export default function Register() {
         };
     }, []);
 
-    const submit: FormEventHandler = (e) => {
+    const submit: FormEventHandler = (e: { preventDefault: () => void }) => {
         e.preventDefault();
 
-        post(route('register'));
-    };
+        // post(route('register'));
 
+        post('/register');
+    };
+    console.log(import.meta.env.VITE_HAS_TERMS_AND_PRIVACY_POLICY_FEATURE);
     return (
-        <GuestLayout>
+        <>
             <Head title="Register" />
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
+            <Form onSubmit={submit}
+                  validationErrors={errors}
+                  className="space-y-6">
+                <TextField
+                    type="text"
+                    name="name"
+                    label="Name"
+                    value={data.name}
+                    className="mt-1"
+                    autoComplete="name"
+                    autoFocus
+                    onChange={(v) => setData('name', v)}
+                    errorMessage={errors.name}
+                    isRequired
+                />
+                <TextField
+                    type="email"
+                    name="email"
+                    label="Email"
+                    value={data.email}
+                    className="mt-1"
+                    autoComplete="username"
+                    onChange={(v) => setData('email', v)}
+                    errorMessage={errors.email}
+                    isRequired
+                />
+                <TextField
+                    type="password"
+                    name="password"
+                    label="Password"
+                    value={data.password}
+                    autoComplete="current-password"
+                    onChange={(v) => setData('password', v)}
+                    errorMessage={errors.password}
+                    isRequired
+                />
 
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
+                <TextField
+                    type="password"
+                    label="Confirm Password"
+                    name="password_confirmation"
+                    value={data.password_confirmation}
+                    className="mt-1"
+                    onChange={(v) => setData('password_confirmation', v)}
+                    errorMessage={errors.password_confirmation}
+                    isRequired
+                />
 
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
+                {import.meta.env.VITE_HAS_TERMS_AND_PRIVACY_POLICY_FEATURE && (
+                    <div className="flex items-center gap-x-1">
+                        <Checkbox name="terms" id="terms" onChange={(e: any) => setData('terms', e)} isRequired>
+                            I agree to the{' '}
+                        </Checkbox>
+                        <Link target="_blank" href={route('terms.show')} intent="primary">
+                            terms of service
+                        </Link>{' '}
+                        and{' '}
+                        <Link target="_blank" href={route('privacy.show')} intent="primary">
+                            privacy policy
+                        </Link>
+                    </div>
+                )}
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
-
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                    >
+                <div className="flex items-center justify-between">
+                    <Link href="/login" className={buttonStyles({ appearance: 'outline' })}>
                         Already registered?
                     </Link>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <Button type="submit" isDisabled={processing}>
                         Register
-                    </PrimaryButton>
+                    </Button>
                 </div>
-            </form>
-        </GuestLayout>
+            </Form>
+        </>
     );
 }
+
+Register.layout = (page: React.ReactNode) => {
+    return <GuestLayout header="Register" description="Register for your new account." children={page} />;
+};

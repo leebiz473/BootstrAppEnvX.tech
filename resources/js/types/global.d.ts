@@ -1,10 +1,17 @@
-import { AxiosInstance } from 'axios';
-import { route as ziggyRoute } from 'ziggy-js';
+import { VisitOptions } from '@inertiajs/core';
+import { type AxiosInstance } from 'axios';
+import { type route as routeFn } from 'ziggy-js';
 
 declare global {
     interface Window {
         axios: AxiosInstance;
     }
 
-    var route: typeof ziggyRoute;
+    let route: typeof routeFn;
+}
+
+declare module 'react-aria-components' {
+    interface RouterConfig {
+        routerOptions: VisitOptions;
+    }
 }

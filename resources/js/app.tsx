@@ -1,21 +1,32 @@
-import './bootstrap';
 import '../css/app.css';
+import './bootstrap';
 
-import { createRoot } from 'react-dom/client';
+import { Ziggy } from '@/ziggy';
 import { createInertiaApp } from '@inertiajs/react';
+import { Providers } from '@/Components/providers';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import { useRoute } from 'ziggy-js';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.tsx`, import.meta.glob('./Pages/**/*.tsx')),
+    title: (title) => (title ? `${title} / ${appName}` : appName),
+    resolve: (name) => resolvePageComponent(`./pages/${name}.tsx`, import.meta.glob('./pages/**/*.tsx')),
     setup({ el, App, props }) {
-        const root = createRoot(el);
+        // @ts-expect-error
+        window.route = useRoute(Ziggy as any);
+        const appElement = (
+            <Providers>
+                <App {...props} />
+            </Providers>
+        );
+        if (import.meta.env.SSR) {
+            hydrateRoot(el, appElement);
+            return;
+        }
 
-        root.render(<App {...props} />);
+        createRoot(el).render(appElement);
     },
-    progress: {
-        color: '#4B5563',
-    },
+    progress: false
 });

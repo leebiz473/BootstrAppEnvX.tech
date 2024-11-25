@@ -1,51 +1,53 @@
-import GuestLayout from '@/Layouts/GuestLayout';
-import InputError from '@/Components/InputError';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
 import { Head, useForm } from '@inertiajs/react';
-import { FormEventHandler } from 'react';
+import { GuestLayout } from '../../Layouts';
+import { Button, Form, TextField } from 'ui';
 
-export default function ForgotPassword({ status }: { status?: string }) {
+interface ForgotPasswordProps {
+    status: string;
+}
+
+export default function ForgotPassword({ status }: ForgotPasswordProps) {
     const { data, setData, post, processing, errors } = useForm({
-        email: '',
+        email: ''
     });
 
-    const submit: FormEventHandler = (e) => {
+    const submit = (e: { preventDefault: () => void }) => {
         e.preventDefault();
-
-        post(route('password.email'));
+        post('/forgot-password');
     };
 
     return (
-        <GuestLayout>
+        <>
             <Head title="Forgot Password" />
+            {status && <div className="mb-4 text-sm font-medium text-success">{status}</div>}
 
-            <div className="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                Forgot your password? No problem. Just let us know your email address and we will email you a password
-                reset link that will allow you to choose a new one.
-            </div>
-
-            {status && <div className="mb-4 font-medium text-sm text-green-600 dark:text-green-400">{status}</div>}
-
-            <form onSubmit={submit}>
-                <TextInput
-                    id="email"
-                    type="email"
+            <Form validationErrors={errors} onSubmit={submit}>
+                <TextField
+                    type="text"
                     name="email"
                     value={data.email}
-                    className="mt-1 block w-full"
-                    isFocused={true}
-                    onChange={(e) => setData('email', e.target.value)}
+                    isRequired
+                    errorMessage={errors.email}
+                    autoFocus
+                    onChange={(v) => setData('email', v)}
                 />
 
-                <InputError message={errors.email} className="mt-2" />
-
-                <div className="flex items-center justify-end mt-4">
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                <div className="mt-4 flex items-center justify-end">
+                    <Button type="submit" className="ml-4" isDisabled={processing}>
                         Email Password Reset Link
-                    </PrimaryButton>
+                    </Button>
                 </div>
-            </form>
-        </GuestLayout>
+            </Form>
+        </>
     );
 }
+
+ForgotPassword.layout = (page: any) => (
+    <GuestLayout
+        header="Forgot Password"
+        description="
+                    Forgot your password? No problem. Just let us know your email address and we will email you a password
+                    reset link that will allow you to choose a new one."
+        children={page}
+    />
+);
