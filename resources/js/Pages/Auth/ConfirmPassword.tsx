@@ -1,6 +1,6 @@
 import { Head, useForm } from '@inertiajs/react';
-import { GuestLayout } from '../../Layouts';
-import { useEffect } from 'react';
+import { GuestLayout } from '@/Layouts';
+import {FormEventHandler, useEffect} from 'react';
 import { Button, Form, TextField } from 'ui';
 
 export default function ConfirmPassword() {

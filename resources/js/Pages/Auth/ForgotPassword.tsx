@@ -1,5 +1,5 @@
 import { Head, useForm } from '@inertiajs/react';
-import { GuestLayout } from '../../Layouts';
+import { GuestLayout } from '@/Layouts';
 import { Button, Form, TextField } from 'ui';
 
 interface ForgotPasswordProps {
