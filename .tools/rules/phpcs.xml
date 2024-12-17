@@ -19,6 +19,7 @@
     <exclude-pattern>_ide_helper*</exclude-pattern>
     <exclude-pattern>.phpstorm.meta.php</exclude-pattern>
     <exclude-pattern>public/build/*</exclude-pattern>
+    <exclude-pattern>tailwind.config.js</exclude-pattern>
 
     <!-- ignore warnings and display ERRORS only -->
     <arg value="np"/>
