@@ -10,7 +10,7 @@ import {
     IconCube
 } from 'justd-icons';
 import { AppLayout } from '@/Layouts';
-import { Card, Container, Grid, Link } from 'ui';
+import { Card, Container, Grid, Link } from '@/Components/ui';
 
 const items = [
     {

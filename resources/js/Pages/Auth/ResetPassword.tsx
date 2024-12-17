@@ -1,7 +1,7 @@
 import { Head, useForm } from '@inertiajs/react';
 import { GuestLayout } from '@/Layouts';
 import { useEffect } from 'react';
-import { Button, Form, TextField } from 'ui';
+import { Button, Form, TextField } from '@/Components/ui';
 
 interface ResetPasswordProps {
     token: string;

@@ -2,7 +2,7 @@ import { Head } from '@inertiajs/react';
 import { Header } from '@/Components/header';
 import { AppLayout } from '../Layouts';
 import React from 'react';
-import { Card, Container } from 'ui';
+import { Card, Container } from '@/Components/ui';
 
 export default function About() {
     return (

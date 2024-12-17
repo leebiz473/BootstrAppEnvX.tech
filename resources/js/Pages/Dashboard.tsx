@@ -1,7 +1,7 @@
 import { PagePropsData } from '@/types';
 import { Head } from '@inertiajs/react';
 import { AppLayout } from '../Layouts';
-import { Card, Container } from 'ui';
+import { Card, Container } from '@/Components/ui';
 
 export default function Dashboard({ auth }: PagePropsData) {
     return (

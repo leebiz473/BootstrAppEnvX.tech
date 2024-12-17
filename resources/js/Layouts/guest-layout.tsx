@@ -2,7 +2,7 @@ import { FlashMessage } from '@/Components/flash-message';
 import { Logo } from '@/Components/logo';
 import { Card } from '@/Components/ui/card';
 import { PropsWithChildren, ReactNode } from 'react';
-import { Link } from 'ui';
+import { Link } from '@/Components/ui';
 import ApplicationLogo from "components/ApplicationLogo";
 
 interface GuestLayoutProps {

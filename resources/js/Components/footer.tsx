@@ -1,6 +1,6 @@
 import { ThemeToggle } from '@/Elements/Buttons/ThemeToggle';
 import { SVGProps } from 'react';
-import { Button, Link, TextField } from 'ui';
+import { Button, Link, TextField } from '@/Components/ui';
 
 const navigation = {
     solutions: [

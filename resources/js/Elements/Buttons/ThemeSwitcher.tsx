@@ -1,6 +1,6 @@
 import { useTheme } from '@/Providers/ThemeProvider';
 import { IconMoon, IconSun } from 'justd-icons';
-import { Button } from 'ui';
+import { Button } from '@/Components/ui';
 
 export function ThemeSwitcher() {
     const { theme, setTheme } = useTheme();

@@ -1,6 +1,6 @@
 import { useTheme } from '@/Providers/ThemeProvider';
 import { IconDeviceDesktop, IconMoon, IconSun } from 'justd-icons';
-import { Button, cn } from 'ui';
+import { Button, cn } from '@/Components/ui';
 
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme();

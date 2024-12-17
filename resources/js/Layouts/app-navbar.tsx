@@ -5,7 +5,7 @@ import { ThemeSwitcher } from '@/Elements/Buttons/ThemeSwitcher';
 import { IconBrandJustd, IconBrandLaravel, IconChevronDown, IconColorSwatch, IconSettings } from 'justd-icons';
 import React from 'react';
 import { Selection } from 'react-aria-components';
-import { Avatar, Button, Menu, Navbar, Separator } from 'ui';
+import { Avatar, Button, Menu, Navbar, Separator } from '@/Components/ui';
 import ApplicationLogo from "@/Components/ApplicationLogo";
 
 const navigations = [
