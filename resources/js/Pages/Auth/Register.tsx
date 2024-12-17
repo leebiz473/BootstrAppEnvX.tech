@@ -1,7 +1,7 @@
 import {useEffect, FormEventHandler, ReactNode} from 'react';
 import { GuestLayout } from '@/Layouts';
 import { useForm } from '@inertiajs/react';
-import UserRegisterForm, {initialRegistrationFormData} from "@/Components/Forms/UserRegistrationForm";
+import UserRegisterForm, {initialRegistrationFormData, RegisterFields} from "@/Components/Forms/UserRegistrationForm";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm(initialRegistrationFormData);
@@ -13,7 +13,7 @@ export default function Register() {
     }, []);
 
     const handleInputChange = (
-        field: 'name' | 'email' | 'password' | 'password_confirmation' | 'terms',
+        field: RegisterFields,
         value: string | boolean
     ) => {
         setData(field, value);
