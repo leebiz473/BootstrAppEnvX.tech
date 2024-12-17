@@ -18,7 +18,6 @@ function PegasusLogo(props: HTMLAttributes<any>){
 
 
 export default function ApplicationLogo(props: SVGAttributes<SVGElement>) {
-    console.log('props', props)
     return (
       <PegasusLogo {...props}/>
     );
