@@ -68,6 +68,7 @@ const boxStyles = tv({
 interface CheckboxProps extends CheckboxPrimitiveProps {
     description?: string;
     label?: string;
+    children?: ReactNode; // Explicitly add ReactNode
 }
 
 const Checkbox = ({ className, ...props }: CheckboxProps) => {
@@ -90,7 +91,7 @@ const Checkbox = ({ className, ...props }: CheckboxProps) => {
 
                     <div className="flex flex-col gap-1">
                         <>
-                            {props.label ? <Label>{props.label}</Label> : props.children}
+                            {props.label ? <Label>{props.label}</Label> : props.children || null}
                             {props.description && <Description>{props.description}</Description>}
                         </>
                     </div>
