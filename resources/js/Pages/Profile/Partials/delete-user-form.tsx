@@ -1,7 +1,7 @@
 import { Button } from '@/Components/ui/button';
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
-import { Card, Modal, TextField } from 'ui';
+import { Card, Modal, TextField } from '@/Components/ui';
 
 export function DeleteUserForm() {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);

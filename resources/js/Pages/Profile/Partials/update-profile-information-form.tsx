@@ -1,6 +1,6 @@
 import { PagePropsData } from '@/types';
 import { useForm, usePage } from '@inertiajs/react';
-import { Button, Card, Form, Link, TextField } from 'ui';
+import { Button, Card, Form, Link, TextField } from '@/Components/ui';
 
 interface Props {
     mustVerifyEmail: boolean;

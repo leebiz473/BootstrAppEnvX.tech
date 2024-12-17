@@ -1,7 +1,7 @@
 import { useForm } from '@inertiajs/react';
 import { useRef } from 'react';
 import { toast } from 'sonner';
-import { Button, Card, Form, TextField } from 'ui';
+import { Button, Card, Form, TextField } from '@/Components/ui';
 
 export function UpdatePasswordForm() {
     const passwordInput = useRef<HTMLInputElement>(null);
