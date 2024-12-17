@@ -1,21 +1,10 @@
-import { useEffect, FormEventHandler } from 'react';
-// import GuestLayout from '@/Layouts/GuestLayout';
-import { GuestLayout } from '../../Layouts';
-// import InputError from '@/Components/InputError';
-// import InputLabel from '@/Components/InputLabel';
-// import PrimaryButton from '@/Components/PrimaryButton';
-// import TextInput from '@/Components/TextInput';
-import { Button, buttonStyles, Checkbox, Form, TextField } from 'ui';
-import { Head, Link, useForm } from '@inertiajs/react';
+import {useEffect, FormEventHandler, ReactNode} from 'react';
+import { GuestLayout } from '@/Layouts';
+import { useForm } from '@inertiajs/react';
+import UserRegisterForm, {initialRegistrationFormData} from "@/Components/Forms/UserRegistrationForm";
 
 export default function Register() {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
-        terms: false
-    });
+    const { data, setData, post, processing, errors, reset } = useForm(initialRegistrationFormData);
 
     useEffect(() => {
         return () => {
@@ -23,95 +12,32 @@ export default function Register() {
         };
     }, []);
 
-    const submit: FormEventHandler = (e: { preventDefault: () => void }) => {
+    const handleInputChange = (
+        field: 'name' | 'email' | 'password' | 'password_confirmation' | 'terms',
+        value: string | boolean
+    ) => {
+        setData(field, value);
+    };
+
+    const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
-        // post(route('register'));
-
         post('/register');
     };
-    console.log(import.meta.env.VITE_HAS_TERMS_AND_PRIVACY_POLICY_FEATURE);
+
+    const hasTermsFeature = Boolean(import.meta.env.VITE_HAS_TERMS_AND_PRIVACY_POLICY_FEATURE);
+
     return (
-        <>
-            <Head title="Register" />
-
-            <Form onSubmit={submit}
-                  validationErrors={errors}
-                  className="space-y-6">
-                <TextField
-                    type="text"
-                    name="name"
-                    label="Name"
-                    value={data.name}
-                    className="mt-1"
-                    autoComplete="name"
-                    autoFocus
-                    onChange={(v) => setData('name', v)}
-                    errorMessage={errors.name}
-                    isRequired
-                />
-                <TextField
-                    type="email"
-                    name="email"
-                    label="Email"
-                    value={data.email}
-                    className="mt-1"
-                    autoComplete="username"
-                    onChange={(v) => setData('email', v)}
-                    errorMessage={errors.email}
-                    isRequired
-                />
-                <TextField
-                    type="password"
-                    name="password"
-                    label="Password"
-                    value={data.password}
-                    autoComplete="current-password"
-                    onChange={(v) => setData('password', v)}
-                    errorMessage={errors.password}
-                    isRequired
-                />
-
-                <TextField
-                    type="password"
-                    label="Confirm Password"
-                    name="password_confirmation"
-                    value={data.password_confirmation}
-                    className="mt-1"
-                    onChange={(v) => setData('password_confirmation', v)}
-                    errorMessage={errors.password_confirmation}
-                    isRequired
-                />
-
-                {import.meta.env.VITE_HAS_TERMS_AND_PRIVACY_POLICY_FEATURE && (
-                    <div className="flex items-center gap-x-1">
-                        <Checkbox name="terms" id="terms" onChange={(e: any) => setData('terms', e)} isRequired>
-                            I agree to the{' '}
-                        </Checkbox>
-                        <Link target="_blank" href={route('terms.show')} intent="primary">
-                            terms of service
-                        </Link>{' '}
-                        and{' '}
-                        <Link target="_blank" href={route('privacy.show')} intent="primary">
-                            privacy policy
-                        </Link>
-                    </div>
-                )}
-
-                <div className="flex items-center justify-between">
-                    <Link href="/login" className={buttonStyles({ appearance: 'outline' })}>
-                        Already registered?
-                    </Link>
-
-                    <Button type="submit" isDisabled={processing}>
-                        Register
-                    </Button>
-                </div>
-            </Form>
-        </>
+        <UserRegisterForm
+            data={data}
+            errors={errors}
+            processing={processing}
+            hasTermsFeature={hasTermsFeature}
+            onInputChange={handleInputChange}
+            onSubmit={submit}
+        />
     );
 }
 
-Register.layout = (page: React.ReactNode) => {
+Register.layout = (page: ReactNode) => {
     return <GuestLayout header="Register" description="Register for your new account." children={page} />;
 };
