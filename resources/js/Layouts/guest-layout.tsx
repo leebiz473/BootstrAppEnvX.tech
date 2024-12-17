@@ -3,6 +3,7 @@ import { Logo } from '@/Components/logo';
 import { Card } from '@/Components/ui/card';
 import { PropsWithChildren, ReactNode } from 'react';
 import { Link } from 'ui';
+import ApplicationLogo from "components/ApplicationLogo";
 
 interface GuestLayoutProps {
     header?: string | null;
@@ -14,7 +15,7 @@ export function GuestLayout({ description = null, header = null, children }: Pro
         <div className="flex min-h-screen flex-col items-center pt-6 sm:justify-center sm:pt-0">
             <FlashMessage />
             <Link href={route('home')}>
-                <Logo className="mx-auto size-8" />
+                <ApplicationLogo className="mx-auto" />
             </Link>
 
             <div className="mt-10 w-full max-w-lg">
