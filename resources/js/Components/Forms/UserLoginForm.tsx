@@ -2,7 +2,6 @@ import { FormEventHandler } from 'react';
 import { Button, buttonStyles, Checkbox, Form, TextField } from '@/Components/ui';
 import { Head, Link } from '@inertiajs/react';
 
-// formConfig.ts (Optional)
 export const initialLoginFormData = {
     email: '',
     password: '',

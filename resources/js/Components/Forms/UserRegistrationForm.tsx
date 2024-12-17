@@ -2,7 +2,6 @@ import { FormEventHandler } from 'react';
 import { Button, buttonStyles, Checkbox, Form, TextField } from '@/Components/ui';
 import { Head, Link } from '@inertiajs/react';
 
-// formConfig.ts
 export const initialRegistrationFormData = {
     name: '',
     email: '',
@@ -37,7 +36,6 @@ type RegisterFormProps = {
     hasTermsFeature: boolean;
     // onInputChange: (field: 'name' | 'email' | 'password' | 'password_confirmation' | 'terms', value: string | boolean) => void;
     onInputChange: (field: RegisterFields, value: string | boolean) => void;
-    // onSubmit: FormEventHandler;
     onSubmit: FormEventHandler;
 };
 
