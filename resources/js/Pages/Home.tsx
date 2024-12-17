@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import { Header } from '@/Components/header';
-import { Logo } from '@/Components/logo';
+import ApplicationLogo from "@/Components/ApplicationLogo";
 import {
     IconBrandGithub,
     IconBrandJustd,
@@ -9,7 +9,7 @@ import {
     IconBrandParsinta,
     IconCube
 } from 'justd-icons';
-import { AppLayout } from '../Layouts';
+import { AppLayout } from '@/Layouts';
 import { Card, Container, Grid, Link } from 'ui';
 
 const items = [
@@ -22,7 +22,7 @@ const items = [
     },
     {
         name: 'Inertia.ts',
-        url: 'https://github.com/irsyadadl/inertia.ts',
+        url: '/#',
         icon: IconBrandGithub,
         description:
             'This project is developed by IrsyadAdl, if you want to contribute to this project, please visit the Github Repository.'
@@ -36,7 +36,7 @@ const items = [
     },
     {
         name: 'Next.js Template',
-        url: 'https://irsyad.co/s',
+        url: '/#',
         icon: IconCube,
         description: 'Explore the next.js templates from web apps to design systems, all here.'
     },
@@ -70,7 +70,7 @@ export default function Home() {
                                 target="_blank"
                                 className="grid place-content-center size-12 outline-1 outline-border rounded-full"
                             >
-                                <Logo className="block size-7" />
+                                <ApplicationLogo className="block" />
                             </Link>
                             <div className="max-w-2xl mb-8">
                                 <div className="mt-6 text-xl sm:text-2xl">
