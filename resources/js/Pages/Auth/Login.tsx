@@ -1,7 +1,7 @@
 import {useEffect, FormEventHandler, ReactNode} from 'react';
 import { GuestLayout } from '@/Layouts';
 import { useForm } from '@inertiajs/react';
-import UserLoginForm, {initialLoginFormData} from "@/Components/Forms/UserLoginForm";
+import UserLoginForm, {initialLoginFormData, LoginFields} from "@/Components/Forms/UserLoginForm";
 
 export default function Login({ status, canResetPassword }: { status?: string; canResetPassword: boolean }) {
     // Initialize the form data
@@ -13,7 +13,7 @@ export default function Login({ status, canResetPassword }: { status?: string; c
         };
     }, []);
 
-    const handleInputChange = (field: 'email' | 'password' | 'remember', value: string | boolean) => {
+    const handleInputChange = (field: LoginFields, value: string | boolean) => {
         setData(field, value);
     };
 

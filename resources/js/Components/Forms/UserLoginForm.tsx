@@ -9,7 +9,7 @@ export const initialLoginFormData = {
     remember: false,
 };
 
-type LoginFields = 'email' | 'password' | 'remember';
+export type LoginFields = 'email' | 'password' | 'remember';
 
 export type LoginFormData = typeof initialLoginFormData;
 
