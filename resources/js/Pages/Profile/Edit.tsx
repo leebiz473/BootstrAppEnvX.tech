@@ -1,6 +1,6 @@
 import { Head } from '@inertiajs/react';
 import { Header } from '@/Components/header';
-import { AppLayout } from '../../Layouts';
+import { AppLayout } from '@/Layouts';
 import { Container } from 'ui';
 import { DeleteUserForm, UpdatePasswordForm, UpdateProfileInformationForm } from './partials';
 
