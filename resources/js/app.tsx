@@ -3,7 +3,7 @@ import './bootstrap';
 
 import { Ziggy } from '@/ziggy';
 import { createInertiaApp } from '@inertiajs/react';
-import { Providers } from '@/Components/providers';
+import { Providers } from '@/Providers';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { useRoute } from 'ziggy-js';

@@ -1,12 +1,12 @@
-import { PagePropsData } from '@/types';
+import { PageProps } from '@/types';
 import { usePage } from '@inertiajs/react';
-import { useTheme } from '@/Components/theme-provider';
-import { ThemeSwitcher } from '@/Components/theme-switcher';
+import { useTheme } from '@/Providers/ThemeProvider';
+import { ThemeSwitcher } from '@/Elements/Buttons/ThemeSwitcher';
 import { IconBrandJustd, IconBrandLaravel, IconChevronDown, IconColorSwatch, IconSettings } from 'justd-icons';
 import React from 'react';
 import { Selection } from 'react-aria-components';
 import { Avatar, Button, Menu, Navbar, Separator } from 'ui';
-import ApplicationLogo from "components/ApplicationLogo";
+import ApplicationLogo from "@/Components/ApplicationLogo";
 
 const navigations = [
     {
@@ -22,32 +22,32 @@ const navigations = [
     {
         name: 'Github',
         textValue: 'Github Repository',
-        href: 'https://github.com/irsyadadl/inertia.ts',
+        href: '#',
         className: 'justify-between'
     },
     {
         name: 'Components',
         textValue: 'Just D. Components',
-        href: 'https://getjustd.com',
+        href: '#',
         className: 'justify-between'
     },
     {
         name: 'Colors',
         textValue: 'Just D. Colors',
-        href: 'https://getjustd.com/colors',
+        href: '#',
         className: 'justify-between'
     },
     {
         name: 'Templates',
         textValue: 'Next.js Template',
-        href: 'https://irsyad.co/s',
+        href: '#',
         className: 'justify-between'
     }
 ];
 
 export function AppNavbar({ children, ...props }: React.ComponentProps<typeof Navbar>) {
     const page = usePage();
-    const { auth } = usePage<PagePropsData>().props;
+    const { auth } = usePage<PageProps>().props;
     const [isOpen, setIsOpen] = React.useState(false);
     React.useEffect(() => setIsOpen(false), [page.url]);
     return (
@@ -89,7 +89,7 @@ export function AppNavbar({ children, ...props }: React.ComponentProps<typeof Na
 }
 
 function UserMenu() {
-    const { auth } = usePage<PagePropsData>().props;
+    const { auth } = usePage<PageProps>().props;
     const { theme, setTheme } = useTheme();
     const currentTheme = theme || 'system';
     const [selectedTheme, setSelectedTheme] = React.useState<Selection>(new Set([currentTheme]));

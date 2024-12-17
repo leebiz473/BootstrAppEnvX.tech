@@ -1,4 +1,4 @@
-import { ThemeToggle } from '@/Components/theme-toggle';
+import { ThemeToggle } from '@/Elements/Buttons/ThemeToggle';
 import { SVGProps } from 'react';
 import { Button, Link, TextField } from 'ui';
 
@@ -203,9 +203,9 @@ export function Footer() {
                         ))}
                     </div>
                     <p className="mt-8 text-xs leading-5 text-muted-fg md:order-1 md:mt-0">
-                        &copy; 2020 Inertia.ts by{' '}
-                        <Link target="_blank" href="https://twitter.com/irsyadadl" className="font-semibold text-fg">
-                            irsyadadl
+                        &copy; {new Date().getFullYear()} Inertia.ts by{' '}
+                        <Link target="_blank" href="https://twitter.com/noattachments0x" className="font-semibold text-fg">
+                            noattachments0x
                         </Link>
                         , Inc. All rights reserved.
                     </p>

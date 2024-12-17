@@ -1,4 +1,4 @@
-import { useTheme } from '@/Components/theme-provider';
+import { useTheme } from '@/Providers/ThemeProvider';
 import { IconMoon, IconSun } from 'justd-icons';
 import { Button } from 'ui';
 

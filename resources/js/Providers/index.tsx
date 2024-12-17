@@ -1,5 +1,5 @@
 import { router } from '@inertiajs/react';
-import { ThemeProvider } from '@/Components/theme-provider';
+import { ThemeProvider } from '@/Providers/ThemeProvider';
 import React from 'react';
 import { RouterProvider } from 'react-aria-components';
 

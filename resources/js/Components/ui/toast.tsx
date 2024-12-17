@@ -1,6 +1,6 @@
 'use client';
 
-import { useTheme } from '@/Components/theme-provider';
+import { useTheme } from '@/Providers/ThemeProvider';
 import { IconCheck, IconCircleInfoFill, IconTriangleInfoFill } from 'justd-icons';
 import { Toaster as ToasterPrimitive, type ToasterProps } from 'sonner';
 import { twJoin } from 'tailwind-merge';
