@@ -1,26 +1,11 @@
-import React, { useEffect, FormEventHandler } from 'react';
-import { Head, useForm } from '@inertiajs/react';
-// import GuestLayout from '@/Layouts/GuestLayout';
-import { GuestLayout } from '../../Layouts';
-// import InputError from '@/Components/InputError';
-// import InputLabel from '@/Components/InputLabel';
-// import PrimaryButton from '@/Components/PrimaryButton';
-// import TextInput from '@/Components/TextInput';
-// import Checkbox from '@/Components/Checkbox';
-import { Button, buttonStyles, Checkbox, Form, Link, TextField } from 'ui';
+import {useEffect, FormEventHandler, ReactNode} from 'react';
+import { GuestLayout } from '@/Layouts';
+import { useForm } from '@inertiajs/react';
+import UserLoginForm, {initialLoginFormData} from "@/Components/Forms/UserLoginForm";
 
-interface LoginProps {
-    status: string;
-    canResetPassword: boolean;
-}
-
-export default function Login(args: LoginProps) {
-    const { status, canResetPassword } = args;
-    const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
-        remember: ''
-    });
+export default function Login({ status, canResetPassword }: { status?: string; canResetPassword: boolean }) {
+    // Initialize the form data
+    const { data, setData, post, processing, errors, reset } = useForm(initialLoginFormData);
 
     useEffect(() => {
         return () => {
@@ -28,66 +13,28 @@ export default function Login(args: LoginProps) {
         };
     }, []);
 
-    const submit: FormEventHandler = (e: { preventDefault: () => void }) => {
-        e.preventDefault();
+    const handleInputChange = (field: 'email' | 'password' | 'remember', value: string | boolean) => {
+        setData(field, value);
+    };
 
+    const handleSubmit: FormEventHandler = (e) => {
+        e.preventDefault();
         post(route('login'));
     };
 
     return (
-        <>
-            <Head title="Log in" />
-
-            {status && <div className="mb-4 text-sm font-medium text-green-600 dark:text-green-400">{status}</div>}
-
-            <Form validationErrors={errors} onSubmit={submit} className="space-y-6">
-                <TextField
-                    label="Email"
-                    type="email"
-                    name="email"
-                    value={data.email}
-                    autoComplete="username"
-                    autoFocus
-                    onChange={(v) => setData('email', v)}
-                    errorMessage={errors.email}
-                    isRequired
-                />
-                <TextField
-                    type="password"
-                    name="password"
-                    label="Password"
-                    value={data.password}
-                    autoComplete="current-password"
-                    onChange={(v) => setData('password', v)}
-                    errorMessage={errors.password}
-                    isRequired
-                />
-
-                <div className="flex items-center justify-between">
-                    <Checkbox name="remember" onChange={(v) => setData('remember', v as any)}>
-                        Remember me
-                    </Checkbox>
-                    {canResetPassword && (
-                        <Link href="/forgot-password" className="text-sm text-fg hover:underline">
-                            Forgot your password?
-                        </Link>
-                    )}
-                </div>
-
-                <div className="flex items-center justify-between">
-                    <Link href={route('register')} className={buttonStyles({ appearance: 'outline' })}>
-                        Register
-                    </Link>
-
-                    <Button isDisabled={processing} type="submit">
-                        Log in
-                    </Button>
-                </div>
-            </Form>
-        </>
+        <UserLoginForm
+            data={data}
+            errors={errors}
+            processing={processing}
+            onInputChange={handleInputChange}
+            onSubmit={handleSubmit}
+            canResetPassword={canResetPassword}
+            status={status}
+        />
     );
 }
 
-Login.layout = (page: React.ReactNode) => {
-    return <GuestLayout header="Login" description="Log in to your account." children={page} />;
-};
+Login.layout = (page: ReactNode) => (
+    <GuestLayout header="Log in" description="Log in with your credentials." children={page} />
+);
