@@ -1,3 +1,6 @@
+import {Config} from "ziggy-js";
+import {User} from "@/types/inertia";
+
 export type AuthData = {
     user: AuthenticatedUserData;
 };
@@ -12,7 +15,8 @@ export type FlashMessageData = {
     type: string;
     message: string;
 };
-export type PagePropsData = {
+export type PageProps = {
     auth: AuthData;
     flashMessage: FlashMessageData;
+    ziggy?: Config & { location: string };
 };
