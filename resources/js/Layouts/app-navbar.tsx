@@ -6,6 +6,7 @@ import { IconBrandJustd, IconBrandLaravel, IconChevronDown, IconColorSwatch, Ico
 import React from 'react';
 import { Selection } from 'react-aria-components';
 import { Avatar, Button, Menu, Navbar, Separator } from 'ui';
+import ApplicationLogo from "components/ApplicationLogo";
 
 const navigations = [
     {
@@ -53,7 +54,7 @@ export function AppNavbar({ children, ...props }: React.ComponentProps<typeof Na
         <Navbar isOpen={isOpen} onOpenChange={setIsOpen} {...props}>
             <Navbar.Nav>
                 <Navbar.Logo aria-label="Logo">
-                    <IconBrandLaravel className="size-6" />
+                    <ApplicationLogo />
                 </Navbar.Logo>
                 <Navbar.Section>
                     {navigations.map((item) => (
