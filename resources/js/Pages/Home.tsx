@@ -59,8 +59,8 @@ const items = [
 export default function Home() {
     return (
         <>
-            <Head title="Welcome to Laravel" />
-            <Header title="Inertia Typescript" />
+            <Head title="Welcome to Pegasus" />
+            <Header title="Pegasus.tech" />
             <Container>
                 <div className="overflow-hidden rounded-lg border lg:border-border border-transparent">
                     <div>
